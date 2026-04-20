@@ -1,26 +1,39 @@
 const express = require("express");
 const cors = require("cors");
-
-const imageRoutes = require("./routes/imageRoutes");
+const fs = require("fs");
 
 const app = express();
-app.use(cors());
+
+//  Enable CORS
+app.use(cors({
+  origin: "*",
+}));
+
+//  Ensure uploads folder exists
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
+
+//  Routes
+const imageRoutes = require("./routes/imageRoutes");
+const pdfRoutes = require("./routes/pdfRoutes");
+const resizeRoutes = require("./routes/resizeRoutes");
+const convertRoutes = require("./routes/convertRoutes");
 
 app.use("/api", imageRoutes);
+app.use("/api", pdfRoutes);
+app.use("/api", resizeRoutes);
+app.use("/api", convertRoutes);
 
+//  Root route (for testing)
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+//  Dynamic port (Render requirement)
+const PORT = process.env.PORT || 5000;
+
+console.log("PORT VALUE:", process.env.PORT);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
-const pdfRoutes = require("./routes/pdfRoutes");
-app.use("/api", pdfRoutes);
-
-const resizeRoutes = require("./routes/resizeRoutes");
-app.use("/api", resizeRoutes);
-
-const convertRoutes = require("./routes/convertRoutes");
-app.use("/api", convertRoutes);
