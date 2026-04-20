@@ -63,7 +63,7 @@ if (showResizeOptions) {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/${apiEndpoint}`, {
+      const res = await fetch(`https://convert-website.onrender.com/api/${apiEndpoint}`, {
         method: "POST",
         body: formData,
       });
