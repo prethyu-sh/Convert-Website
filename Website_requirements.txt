@@ -1,0 +1,300 @@
+I want to make a website mainly with image and pdf tools like converting, compressing, etc. 
+Requirements of website:
+- Keep UI simple
+- Fast processing
+- Mobile friendly
+- No login required
+- Target long-tail keywords
+- Create SEO pages for each keyword
+- Optimize page speed
+- Internal linking
+
+Stack for website:
+- Frontend : Next.js
+- Backend : Node.js + Express.js
+
+Tools that should be included in website:
+-> Image tools :
+	- Image compressor
+	- Image to pdf converter
+	- Resize image
+	- Crop image
+	- Convert image formats(png, jpg/jpeg, webp, avif formats should be included).
+-> PDF tools :
+	- PDF compressor
+	- Merge pdf
+	- Split pdf
+	- pdf to other format converter(formats should include Word, Excel, Powerpoint, JPG)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Build a full-stack web application named "Convert" — a fast, SEO-optimized online tool website for image and PDF processing.
+
+## 🎯 Goal
+
+Create a modern, minimal, and high-performance website that provides free tools for:
+
+* Image conversion and compression
+* PDF manipulation and conversion
+
+The website should focus on:
+
+* Simplicity
+* Speed
+* SEO optimization (long-tail keyword strategy)
+* Mobile-first design
+* No authentication (no login/signup)
+
+---
+
+## 🧱 Tech Stack
+
+Frontend:
+
+* Next.js (App Router)
+* Tailwind CSS
+
+Backend:
+
+* Node.js
+* Express.js
+
+Other:
+
+* Multer (file upload)
+* Sharp (image processing)
+* pdf-lib / PDFKit (PDF processing)
+
+---
+
+## 🎨 UI/UX Requirements
+
+* Clean, minimal UI (similar to Smallpdf)
+* Large upload box in hero section
+* Drag & drop support
+* Mobile responsive design
+* Fast loading (optimize images and scripts)
+* No clutter, no unnecessary animations
+
+---
+
+## 🏠 Homepage Layout
+
+1. Hero Section:
+
+   * Title: "Free Image & PDF Tools"
+   * Subtitle: "Compress, Convert & Optimize Files Instantly"
+   * Upload box (drag & drop)
+
+2. Popular Tools Section:
+
+   * Compress Image
+   * Image to PDF
+   * Compress PDF
+   * Merge PDF
+
+3. SEO Section:
+
+   * Links for:
+
+     * Compress image to 50KB
+     * Compress image to 100KB
+     * Compress PDF to 200KB
+     * etc.
+
+4. How It Works:
+
+   * Upload → Process → Download
+
+5. Features:
+
+   * Fast processing
+   * Secure files
+   * Mobile friendly
+   * Free to use
+
+6. Footer:
+
+   * Internal keyword links
+   * Sitemap links
+
+---
+
+## 🧰 Features (Tools)
+
+### Image Tools
+
+* Image compressor (quality control)
+* Image to PDF converter
+* PDF to Image converter
+* Resize image (width/height input)
+* Crop image
+
+#### 🔁 Image Format Converter (Bi-directional)
+
+Support conversion **both ways (vice versa)** between formats:
+
+* PNG ↔ JPG/JPEG
+* PNG ↔ WEBP
+* JPG ↔ WEBP
+* WEBP ↔ AVIF
+* JPG ↔ AVIF
+* PNG ↔ AVIF
+
+👉 Users should be able to:
+
+* Upload any supported format
+* Select output format
+* Convert instantly
+
+---
+
+### PDF Tools
+
+* Compress PDF
+* Merge PDF
+* Split PDF
+
+#### 🔁 PDF Conversion (Bi-directional)
+
+Convert **to and from PDF**:
+
+**From PDF:**
+
+* PDF → Word
+* PDF → Excel
+* PDF → PowerPoint
+* PDF → JPG
+
+**To PDF:**
+
+* Word → PDF
+* Excel → PDF
+* PowerPoint → PDF
+* JPG / PNG / WEBP → PDF
+
+---
+
+## ⚙️ Conversion Logic Requirement
+
+* Automatically detect input file type
+* Allow user to select output format
+* Use a unified conversion handler instead of separate APIs for each format
+* Example API:
+
+  * POST /convert-file
+
+    * input: file + targetFormat
+    * output: converted file
+
+👉 Avoid creating too many separate endpoints — use a flexible system
+
+---
+
+## ⚙️ Backend Requirements
+
+* Create REST APIs for each tool:
+
+  * POST /compress-image
+  * POST /image-to-pdf
+  * POST /resize-image
+  * POST /convert-image
+  * POST /compress-pdf
+  * POST /merge-pdf
+  * POST /split-pdf
+  * POST /pdf-to-jpg
+  * etc.
+
+* Use multer for file uploads
+
+* Store files temporarily
+
+* Delete files after processing (important)
+
+---
+
+## ⚡ Performance Optimization
+
+* Use streaming where possible
+* Compress output files
+* Limit file size (e.g., 10MB max)
+* Use async processing
+
+---
+
+## 🔍 SEO Requirements (VERY IMPORTANT)
+
+* Create dynamic pages for long-tail keywords:
+  Examples:
+
+  * /compress-image-to-50kb
+  * /compress-image-to-100kb
+  * /compress-pdf-to-200kb
+
+* Each page must include:
+
+  * SEO title (H1)
+  * Meta description
+  * 300–800 words of content
+  * FAQ section
+
+* Implement:
+
+  * Sitemap.xml
+  * robots.txt
+  * Open Graph tags
+
+---
+
+## 🔗 Internal Linking
+
+* Homepage links to all tool pages
+* Tool pages link to related tools
+* Footer includes keyword links
+
+---
+
+## 📱 Mobile Optimization
+
+* Large tap targets
+* Minimal UI
+* Fast loading
+* Responsive grid layout
+
+---
+
+## 📂 Project Structure
+
+Frontend:
+
+* /app
+* /components
+* /tools
+* /seo-pages
+
+Backend:
+
+* /routes
+* /controllers
+* /utils
+
+---
+
+## 🎯 Output Expectations
+
+* Fully working frontend UI
+* Fully working backend APIs
+* Clean code structure
+* Production-ready project
+
+---
+
+## 🧠 Additional Notes
+
+* Focus on speed and simplicity
+* Avoid unnecessary dependencies
+* Write clean, maintainable code
+* Prioritize SEO and performance over fancy UI
+
+
