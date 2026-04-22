@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://your-project-name.vercel.app";
+  const baseUrl = "https://convert-website-six.vercel.app/";
 
   const sizes = [20, 50, 100, 200];
 
