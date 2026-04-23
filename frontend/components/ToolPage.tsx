@@ -30,10 +30,15 @@ export default function ToolPage({
   const [loading, setLoading] = useState(false);
   const [format, setFormat] = useState("jpeg");
   const [targetSize, setTargetSize] = useState(defaultTargetSize || "");
+  const [dragging, setDragging] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   
   const handleFile = (selectedFile: File) => {
     setFile(selectedFile);
     setPreview(URL.createObjectURL(selectedFile));
+    setSuccess(false);
+    setError("");
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -85,8 +90,10 @@ if (showFormatOptions) {
       a.href = url;
       a.download = `converted.${extension}`;
       a.click();
+      a.click();
+      setSuccess(true);
     } catch (error) {
-      alert("Something went wrong");
+      setError("Conversion failed. Please try again.");
     }
 
     setLoading(false);
@@ -104,9 +111,18 @@ if (showFormatOptions) {
       </p>
 
       <div
-        onDrop={handleDrop}
-        onDragOver={(e) => e.preventDefault()}
-        className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md text-center border-2 border-dashed border-gray-400"
+  onDrop={(e) => {
+    e.preventDefault();
+    setDragging(false);
+    handleDrop(e);
+  }}
+  onDragOver={(e) => {
+    e.preventDefault();
+    setDragging(true);
+  }}
+  onDragLeave={() => setDragging(false)}
+        className={`bg-white shadow-lg rounded-2xl p-8 w-full max-w-md text-center border-2 border-dashed transition 
+${dragging ? "border-blue-600 bg-blue-50" : "border-gray-300 hover:border-blue-500"}`}
       >
 
         {!file ? (
@@ -132,18 +148,20 @@ if (showFormatOptions) {
         ) : (
           <>
             {preview && (
-              <img
-                src={preview}
-                alt="preview"
-                className="mb-4 rounded-lg max-h-40 mx-auto"
-              />
-            )}
+  <img
+    src={preview}
+    alt="preview"
+    className="mb-4 rounded-xl max-h-40 mx-auto shadow"
+  />
+)}
 
-            <p className="text-gray-700 mb-2">{file.name}</p>
+<p className="text-gray-800 mb-1 font-medium text-sm">
+  {file.name}
+</p>
 
-            <p className="text-gray-500 text-sm mb-4">
-              {(file.size / 1024).toFixed(2)} KB
-            </p>
+<p className="text-gray-500 text-xs mb-4">
+  {(file.size / 1024).toFixed(2)} KB
+</p>
 {showResizeOptions && (
   <div className="flex gap-2 mb-4 text-gray-500">
     <input
@@ -196,10 +214,20 @@ if (showFormatOptions) {
 )}
         <button
           onClick={handleAction}
-          className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold"
+          className="w-full bg-green-600 hover:bg-green-700 active:scale-95 transition-all duration-200 text-white py-3 rounded-xl font-semibold shadow-md hover:shadow-lg"
         >
-          {loading ? "Processing..." : buttonText}
+          {loading ? "Processing your file..." : buttonText}
         </button>
+        {success && (
+  <p className="text-green-600 text-sm mt-2">
+    File processed successfully ✔
+  </p>
+)}
+{error && (
+  <p className="text-red-500 text-sm mt-2">
+    {error}
+  </p>
+)}
 
       </div>
     </div>
