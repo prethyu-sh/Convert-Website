@@ -41,7 +41,8 @@ export default async function Page({ params }: any) {
 
       <ToolPage
         title={`Compress Image to ${size}KB`}
-        description="Reduce image size easily."
+        description={`Compress your image to ${size}KB without losing quality.
+        Fast and free tool.`}
         buttonText="Compress Image"
         apiEndpoint="compress-image"
         showCompressOptions={true}
